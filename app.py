@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
@@ -9,6 +9,10 @@ def landingpad():
 def createAccount():
 	return render_template("createAccount.html")
 
+@app.route("/welcome")
+def welcome():
+	return render_template("welcome.html")
+
 @app.route("/accountCreated")
 def accountCreated():
 	return render_template("accountCreated.html")
@@ -17,6 +21,6 @@ def accountCreated():
 def forgotPassword():
 	return render_template("forgotPassword.html")
 
-@app.route("/
-if __name__ == "__main__":
-    app.run
+
+if __name__ == '__main__':
+    app.run(debug=True)
