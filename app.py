@@ -1,13 +1,43 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
+from flask_mysqldb import MySQL
+
+
+#def connect():
+
+#    conn = MySQLdb.connect(db="GameChat", host="localhost", user="root", passwd="Dustin2018", port=3306)
+#    cur = conn.cursor()
+#    return conn, cur
+
+
+
 app = Flask(__name__)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Dustin2018'
+app.config['MYSQL_DB'] = 'GameChat'
+
+mysql = MySQL(app)
+
+
 
 @app.route("/")
 def landingpad():
     return render_template("landingpad.html")
 
-@app.route("/createAccount")
+@app.route("/createAccount", methods=['GET, POST'])
 def createAccount():
-	return render_template("createAccount.html")
+    if request.method =="POST":
+        details = request.form
+        username = details['username']
+        password = details['password']
+        email = details['email']
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO USERS(username, password, email) VALUES (%s, %s, %s)", (username, password, email))
+        mysql.connection.commit()
+        cur.close()
+        return 'success'
+	return render_template("createAccount.html",)
 
 @app.route("/welcome")
 def welcome():
