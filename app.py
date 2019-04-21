@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 import MySQLdb
+import mysql.connector
 
 
 #def connect():
@@ -8,8 +9,15 @@ import MySQLdb
 #    cur = conn.cursor()
 #    return conn, cur
 
-def connect():
-    conn = MySQLdb.connect(db="GameChat", host="localhost", user="root", passwd="Dustin2018")
+#def connect():
+    #conn = MySQLdb.connect(db="GameChat", host="localhost", user="root", passwd="Dustin2018")
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  passwd="Dustin2018",
+  database="GameChat"
+)
 
 
 app = Flask(__name__)
@@ -29,19 +37,18 @@ def landingpad():
 
 @app.route("/createAccount", methods=['GET', 'POST'])
 def createAccount():
-    conn, cur = connect()
+    mycursor = mydb.cursor()
 
-    data={}
-    data['email'] = request.form.get('email')
-    data['password'] = request.form.get('password')
-    data['username'] = request.form.get('username')
 
-    query = "INSERT INTO `USERS` (`email`, `password`, `username`) VALUES ('{0}', '{1}', '{2}')".format(data['email'],data['password'],data['username'])
-    cur.execute(query)
-    conn.commit()
-    conn.close()
+    sql = "INSERT INTO USERS (username, password, email) VALUES (%s, %s, %s)"
+    val = (request.form.get("username"), request.form.get("password"), request.form.get("email"))
 
-    return render_template("accountCreated.html")
+    mycursor.execute(sql, val)
+
+    mydb.commit()
+
+
+    return render_template("createAccount.html")
 
 @app.route("/welcome")
 def welcome():
@@ -66,6 +73,10 @@ def leagueHome():
 @app.route("/destinyHome")
 def destinyHome():
     return render_template("destinyHome.html")
+
+@app.route("/destinyNav")
+def destinyNav():
+    return render_template("destinyNav.html")
 
 @app.route("/hollowKnightHome")
 def hollowKnightHome():
