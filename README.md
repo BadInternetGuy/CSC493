@@ -13,4 +13,31 @@ GameChat was also a way for me to test my knowledge on concepts that I had pract
 
 In any case, GameChat is a project that I would honestly like to keep working on. Both in order to test my own knowledge, and also to learn more about web development in general. 
 
+# References
 
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-16-04
+
+	Installing phpmyadmin on ubuntu
+
+https://github.com/tirthasubedi/Landlink_Mobile/blob/master/__init__.py
+
+	Project for a previous class. Refresher for connecting to database. 
+  
+  https://stackoverflow.com/questions/21530577/fatal-error-python-h-no-such-file-or-directory
+
+	Helped solve a critical issue with installing software. 
+
+
+https://startbootstrap.com/templates/scrolling-nav/
+
+	Basic starter template for navigation
+
+Anthem picture found at: http://hdqwalls.com/anthem-4k-wallpaper
+
+League of Legends picture found at: https://wallpapersite.com/games/dark-star-thresh-league-of-legends-4k-932.html
+
+MTG picture found at: https://wallpaperscraft.com/download/magic_the_gathering_chandra_art_102333/3840x2160
+
+Hollow Knight picture found at: https://www.kickstarter.com/projects/11662585/hollow-knight/posts/1068473
+
+Destiny picture found at: https://wallpapersite.com/games/destiny-2-hd-2017-6986.html
